@@ -17,23 +17,23 @@ Utils.escapeHTML = function(str, escapeQuotes) {
   Pass a reference object of ids and property names e.g.
   {
     digitalClock: 'digital-clock',
-    analogClock: 'analog-clock',
-    time: 'clock-time'
+    analogClock: 'analog-clock'
   }
+  And a target object
 */
-Utils.initRefs = function(refObj) {
+initRefs = function(refObj, target) {
   Object.keys(refObj).forEach(function(key) {
     var value = refObj[key];
-    Object.defineProperty(this, key, {
+    Object.defineProperty(target, key, {
       // Retain lazy loading of document elements
-      get: function(){
+      get: function() {
         delete this[key];
         return this[key] = document.getElementById(value);
-      }
+      },
+      configurable: true,
+      enumerable: true
     });
-  // Pass in this value from relevant constructor.
-  // Requires us to bind the function.
-  }, this);
+  });
 };
 
 Utils.summarizeDaysOfWeek = function(bitStr) {

@@ -8,7 +8,7 @@ var BannerView = {
   },
 
   init: function BV_init() {
-    Utils.initRefs(idRefs).bind(this);
+    Utils.initRefs(idRefs, this);
     this.bannerCountdown.addEventListener('click', this);
   },
 

@@ -35,7 +35,7 @@ var AlarmEdit = {
 
   init: function aev_init() {
     navigator.mozL10n.translate(this.element);
-    Utils.initRefs(idRefs).bind(this);
+    Utils.initRefs(idRefs, this);
     this.backButton.addEventListener('click', this);
     this.doneButton.addEventListener('click', this);
     this.timeMenu.addEventListener('click', this);
