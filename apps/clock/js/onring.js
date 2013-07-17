@@ -12,33 +12,17 @@ var RingView = {
   _onFireAlarm: {},
   _started: false,
 
-  get time() {
-    delete this.time;
-    return this.time = document.getElementById('ring-clock-time');
-  },
-
-  get hourState() {
-    delete this.hourState;
-    return this.hourState = document.getElementById('ring-clock-hour24-state');
-  },
-
-  get alarmLabel() {
-    delete this.alarmLabel;
-    return this.alarmLabel = document.getElementById('ring-alarm-label');
-  },
-
-  get snoozeButton() {
-    delete this.snoozeButton;
-    return this.snoozeButton = document.getElementById('ring-button-snooze');
-  },
-
-  get closeButton() {
-    delete this.closeButton;
-    return this.closeButton = document.getElementById('ring-button-close');
+  idRefs: {
+    time: 'ring-clock-time',
+    hourState: 'ring-clock-hour24-state',
+    alarmLabel: 'ring-alarm-label',
+    snoozeButton: 'ring-button-snooze',
+    closeButton: 'ring-button-close'
   },
 
   init: function rv_init() {
     document.addEventListener('visibilitychange', this);
+    Utils.initRefs(idRefs).bind(this);
     this._onFireAlarm = window.opener.ActiveAlarm.getOnFireAlarm();
     var self = this;
     if (!document.hidden) {

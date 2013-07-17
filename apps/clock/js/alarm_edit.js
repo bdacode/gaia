@@ -8,15 +8,23 @@ var AlarmEdit = {
     is12hFormat: false
   },
   previewRingtonePlayer: null,
-
-  get element() {
-    delete this.element;
-    return this.element = document.getElementById('alarm');
-  },
-
-  get scrollList() {
-    delete this.scrollList;
-    return this.scrollList = document.getElementById('edit-alarm');
+  idRefs: {
+    element: 'alarm',
+    scrollList: 'edit-alarm',
+    timeSelect: 'time-select',
+    timeMenu: 'time-menu',
+    alarmTitle: 'alarm-title',
+    repeatMenu: 'repeat-menu',
+    repeatSelect: 'repeat-select',
+    soundMenu: 'sound-menu',
+    soundSelect: 'sound-select',
+    vibrateMenu: 'vibrate-menu',
+    vibrateSelect: 'vibrate-select',
+    snoozeMenu: 'snooze-menu',
+    snoozeSelect: 'snooze-select',
+    deleteButton: 'alarm-delete',
+    backElement: 'alarm-close',
+    doneButton: 'alarm-done'
   },
 
   get labelInput() {
@@ -25,78 +33,9 @@ var AlarmEdit = {
       document.querySelector('input[name="alarm.label"]');
   },
 
-  get timeSelect() {
-    delete this.timeSelect;
-    return this.timeSelect = document.getElementById('time-select');
-  },
-
-  get timeMenu() {
-    delete this.timeMenu;
-    return this.timeMenu = document.getElementById('time-menu');
-  },
-
-  get alarmTitle() {
-    delete this.alarmTitle;
-    return this.alarmTitle = document.getElementById('alarm-title');
-  },
-
-  get repeatMenu() {
-    delete this.repeatMenu;
-    return this.repeatMenu = document.getElementById('repeat-menu');
-  },
-
-  get repeatSelect() {
-    delete this.repeatSelect;
-    return this.repeatSelect = document.getElementById('repeat-select');
-  },
-
-  get soundMenu() {
-    delete this.soundMenu;
-    return this.soundMenu = document.getElementById('sound-menu');
-  },
-
-  get soundSelect() {
-    delete this.soundSelect;
-    return this.soundSelect = document.getElementById('sound-select');
-  },
-
-  get vibrateMenu() {
-    delete this.vibrateMenu;
-    return this.vibrateMenu = document.getElementById('vibrate-menu');
-  },
-
-  get vibrateSelect() {
-    delete this.vibrateSelect;
-    return this.vibrateSelect = document.getElementById('vibrate-select');
-  },
-
-  get snoozeMenu() {
-    delete this.snoozeMenu;
-    return this.snoozeMenu = document.getElementById('snooze-menu');
-  },
-
-  get snoozeSelect() {
-    delete this.snoozeSelect;
-    return this.snoozeSelect = document.getElementById('snooze-select');
-  },
-
-  get deleteButton() {
-    delete this.deleteButton;
-    return this.deleteButton = document.getElementById('alarm-delete');
-  },
-
-  get backButton() {
-    delete this.backElement;
-    return this.backElement = document.getElementById('alarm-close');
-  },
-
-  get doneButton() {
-    delete this.doneButton;
-    return this.doneButton = document.getElementById('alarm-done');
-  },
-
   init: function aev_init() {
     navigator.mozL10n.translate(this.element);
+    Utils.initRefs(idRefs).bind(this);
     this.backButton.addEventListener('click', this);
     this.doneButton.addEventListener('click', this);
     this.timeMenu.addEventListener('click', this);

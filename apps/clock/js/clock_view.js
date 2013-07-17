@@ -5,45 +5,19 @@ var SETTINGS_CLOCKMODE = 'settings_clockoptions_mode';
 var ClockView = {
   _clockMode: null, /* is read from settings */
 
-  get digitalClock() {
-    delete this.digitalClock;
-    return this.digitalClock = document.getElementById('digital-clock');
-  },
-
-  get analogClock() {
-    delete this.analogClock;
-    return this.analogClock = document.getElementById('analog-clock');
-  },
-
-  get time() {
-    delete this.time;
-    return this.time = document.getElementById('clock-time');
-  },
-
-  get hourState() {
-    delete this.hourState;
-    return this.hourState = document.getElementById('clock-hour24-state');
-  },
-
-  get dayDate() {
-    delete this.dayDate;
-    return this.dayDate = document.getElementById('clock-day-date');
-  },
-
-  get alarmNewBtn() {
-    delete this.alarmNewBtn;
-    return this.alarmNewBtn = document.getElementById('alarm-new');
-  },
-
-  get digitalClockBackground() {
-    delete this.digitalClockBackground;
-    return this.digitalClockBackground =
-      document.getElementById('digital-clock-background');
+  idRefs: {
+    digitalClock: 'digital-clock',
+    analogClock: 'analog-clock',
+    time: 'clock-time',
+    hourState: 'clock-hour24-state',
+    dayDate: 'clock-day-date',
+    alarmNewBtn: 'alarm-new',
+    digitalClockBackground: 'digital-clock-background'
   },
 
   init: function cv_init() {
     this.container = document.getElementById('analog-clock-container');
-
+    Utils.initRefs(idRefs).bind(this);
     document.addEventListener('visibilitychange', this);
 
     this.updateDaydate();

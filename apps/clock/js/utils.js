@@ -12,6 +12,30 @@ Utils.escapeHTML = function(str, escapeQuotes) {
   return span.innerHTML;
 };
 
+// Lazy load DOM references
+/*
+  Pass a reference object of ids and property names e.g.
+  {
+    digitalClock: 'digital-clock',
+    analogClock: 'analog-clock',
+    time: 'clock-time'
+  }
+*/
+Utils.initRefs = function(refObj) {
+  Object.keys(refObj).forEach(function(key) {
+    var value = refObj[key];
+    Object.defineProperty(this, key, {
+      // Retain lazy loading of document elements
+      get: function(){
+        delete this[key];
+        return this[key] = document.getElementById(value);
+      }
+    });
+  // Pass in this value from relevant constructor.
+  // Requires us to bind the function.
+  }, this);
+};
+
 Utils.summarizeDaysOfWeek = function(bitStr) {
   var _ = navigator.mozL10n.get;
 

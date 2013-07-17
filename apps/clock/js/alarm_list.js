@@ -8,19 +8,10 @@ var AlarmList = {
   refreshingAlarms: [],
   _previousAlarmCount: 0,
 
-  get alarms() {
-    delete this.alarms;
-    return this.alarms = document.getElementById('alarms');
-  },
-
-  get title() {
-    delete this.title;
-    return this.title = document.getElementById('alarms-title');
-  },
-
-  get newAlarmButton() {
-    delete this.newAlarmButton;
-    return this.newAlarmButton = document.getElementById('alarm-new');
+  idRefs: {
+    alarms: 'alarms',
+    title: 'alarms-title',
+    newAlarmButton: 'alarm-new'
   },
 
   handleEvent: function al_handleEvent(evt) {
@@ -57,6 +48,7 @@ var AlarmList = {
   },
 
   init: function al_init() {
+    Utils.initRefs(idRefs).bind(this);
     this.newAlarmButton.addEventListener('click', this);
     this.alarms.addEventListener('click', this);
     this.refresh();

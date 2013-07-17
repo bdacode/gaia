@@ -3,12 +3,12 @@ var BannerView = {
   _remainHours: 0,
   _remainMinutes: 0,
 
-  get bannerCountdown() {
-    delete this.bannerCountdown;
-    return this.bannerCountdown = document.getElementById('banner-countdown');
+  idRefs: {
+    bannerCountdown: 'banner-countdown'
   },
 
   init: function BV_init() {
+    Utils.initRefs(idRefs).bind(this);
     this.bannerCountdown.addEventListener('click', this);
   },
 
