@@ -17,7 +17,6 @@ var ClockView = {
 
   init: function cv_init() {
     this.container = document.getElementById('analog-clock-container');
-    Utils.initRefs(idRefs, this);
     document.addEventListener('visibilitychange', this);
 
     this.updateDaydate();
@@ -241,4 +240,6 @@ var ClockView = {
   }
 
 };
+
+Utils.initRefs(ClockView.idRefs, ClockView);
 

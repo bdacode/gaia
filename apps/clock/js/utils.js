@@ -21,7 +21,7 @@ Utils.escapeHTML = function(str, escapeQuotes) {
   }
   And a target object
 */
-initRefs = function(refObj, target) {
+Utils.initRefs = function(refObj, target) {
   Object.keys(refObj).forEach(function(key) {
     var value = refObj[key];
     Object.defineProperty(target, key, {

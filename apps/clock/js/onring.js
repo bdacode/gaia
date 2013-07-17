@@ -22,7 +22,6 @@ var RingView = {
 
   init: function rv_init() {
     document.addEventListener('visibilitychange', this);
-    Utils.initRefs(idRefs, this);
     this._onFireAlarm = window.opener.ActiveAlarm.getOnFireAlarm();
     var self = this;
     if (!document.hidden) {
@@ -207,6 +206,6 @@ var RingView = {
   }
 
 };
-
+Utils.initRefs(RingView.idRefs, RingView);
 RingView.init();
 

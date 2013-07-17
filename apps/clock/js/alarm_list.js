@@ -48,7 +48,6 @@ var AlarmList = {
   },
 
   init: function al_init() {
-    Utils.initRefs(idRefs, this);
     this.newAlarmButton.addEventListener('click', this);
     this.alarms.addEventListener('click', this);
     this.refresh();
@@ -168,3 +167,5 @@ var AlarmList = {
   }
 
 };
+
+Utils.initRefs(AlarmList.idRefs, AlarmList);
